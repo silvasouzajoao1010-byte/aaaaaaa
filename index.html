@@ -3,68 +3,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal do Futebol | Seu Time Online</title>
+    <title>FutMaster | O Portal do Torcedor</title>
     <style>
-        /* Reset básico e fontes */
+        /* Variáveis de Estilo - Mude aqui e mude o site todo! */
+        :root {
+            --primary-color: #1b5e20; /* Verde Escuro */
+            --secondary-color: #fbc02d; /* Amarelo Ouro */
+            --dark-bg: #121212;
+            --light-bg: #f5f5f5;
+            --text-color: #333;
+            --white: #ffffff;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
         body {
-            background-color: #f4f4f4;
-            color: #333;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
         }
 
-        /* Cabeçalho */
+        /* Header Moderno */
         header {
-            background-color: #006400; /* Verde Futebol */
-            color: white;
-            padding: 1rem 0;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            color: var(--secondary-color);
         }
 
         nav ul {
-            list-style: none;
             display: flex;
-            justify-content: center;
-            background-color: #004d00;
-            padding: 10px;
+            list-style: none;
         }
 
-        nav ul li {
-            margin: 0 15px;
-        }
+        nav ul li { margin-left: 20px; }
 
         nav ul li a {
-            color: white;
+            color: var(--white);
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 500;
+            transition: 0.3s;
         }
 
-        /* Conteúdo Principal */
-        .container {
-            max-width: 1100px;
-            margin: 20px auto;
+        nav ul li a:hover { color: var(--secondary-color); }
+
+        /* Hero Section (Banner) */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&q=80&w=1470') center/cover;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero h2 { font-size: 3rem; margin-bottom: 10px; }
+
+        /* Grade de Conteúdo */
+        .main-container {
+            max-width: 1200px;
+            margin: -50px auto 40px;
             padding: 0 20px;
             display: grid;
             grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        /* Cards Estilizados */
+        .card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 25px;
+        }
+
+        .match-highlight {
+            background: var(--dark-bg);
+            color: white;
+            text-align: center;
+        }
+
+        .score-board {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 20px 0;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .btn-ticket {
+            background: var(--secondary-color);
+            color: #000;
+            padding: 10px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.2s;
+            display: inline-block;
+        }
+
+        .btn-ticket:hover { transform: scale(1.05); }
+
+        /* Lista de Notícias */
+        .news-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 20px;
         }
 
-        /* Destaque do Jogo */
-        .match-card {
-            background: white;
-            padding: 20px;
+        .news-item img {
+            width: 100%;
             border-radius: 8px;
-            text-align: center;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 10px;
         }
 
-        .match-card h2 {
-            margin-bottom: 15px;
-            color: #00640
+        /* Tabela Pro */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th { text-align: left; color: #888; font-size: 0.8rem; padding-bottom: 10px; }
+        td { padding: 12px 0; border-bottom: 1px solid #eee; font-weight: 500; }
+        .pos { color: var(--primary-color); font-weight: bold; width: 30px; }
+
+        /* Responsividade */
+        @media (max-width: 900px) {
+            .main-container { grid-template-columns: 1fr; margin-top: 20px; }
+            .hero h2 { font-size: 2rem; }
+            .news-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">FUT<span>MASTER</span></div>
+        <nav>
+            <ul>
+                <li><a href="#">Jogos</a></li>
+                <li><a href="#">Notícias</a></li>
+                <li><a href="#">Elenco</a></li>
+                <li><a href="#">Sócio Torcedor</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>Rumo ao Título!</h2>
+        <p>Acompanhe cada detalhe da nossa jornada nesta temporada.</p>
+    </section>
+
+    <div class="main-container">
+        
+        <main>
+            <section class="card match-highlight">
+                <p style="color: var(--secondary-color); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px;">Próxima Partida</p>
+                <div class="score-board">
+                    <span>MEU TIME</span>
+                    <span style="color: var(--secondary-color);">X</span>
+                    <span>ADVERSÁRIO</span>
+                </div>
+                <p>Quarta-feira | 21:30 | Arena Principal</p>
+                <br>
+                <a href="#" class="btn-ticket">Garantir Ingresso</a>
+            </section>
+
+            <section class="card">
+                <h3 style="margin-bottom: 20px; border-left: 5px solid var(--primary-color); padding-left: 10px;">Últimas do Clube</h3>
+                <div class="news-grid">
+                    <article class="news-item">
+                        <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&q=80&w=500" alt="Treino">
+                        <h4>Preparação intensa para o clássico</h4>
+                        <p>O técnico comandou um treino tático focado na saída de bola...</p>
+                    </article>
+                    <article class="news-item">
+                        <img src="https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&q=80&w=500" alt="Torcida">
+                        <h4>Sócio-torcedor bate recorde</h4>
+                        <p>Alcançamos a marca de 50 mil membros ativos nesta manhã!</p>
+                    </article>
+                </div>
+            </section>
+        </main>
+
+        <aside>
+            <section class="card">
