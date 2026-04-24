@@ -3,213 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FutMaster | O Portal do Torcedor</title>
+    <title>Playtime Co. Archive | A História</title>
     <style>
-        /* Variáveis de Estilo - Mude aqui e mude o site todo! */
-        :root {
-            --primary-color: #1b5e20; /* Verde Escuro */
-            --secondary-color: #fbc02d; /* Amarelo Ouro */
-            --dark-bg: #121212;
-            --light-bg: #f5f5f5;
-            --text-color: #333;
-            --white: #ffffff;
-        }
-
-        * {
+        /* Estilização Geral */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0f0f0f;
+            color: #e0e0e0;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        }
-
-        body {
-            background-color: var(--light-bg);
-            color: var(--text-color);
             line-height: 1.6;
         }
 
-        /* Header Moderno */
         header {
-            background-color: var(--primary-color);
-            color: var(--white);
-            padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 900;
-            letter-spacing: -1px;
-            color: var(--secondary-color);
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li { margin-left: 20px; }
-
-        nav ul li a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: 0.3s;
-        }
-
-        nav ul li a:hover { color: var(--secondary-color); }
-
-        /* Hero Section (Banner) */
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&q=80&w=1470') center/cover;
-            height: 400px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: white;
+            background-color: #1a1a1a;
+            border-bottom: 4px solid #d4af37; /* Dourado industrial */
+            padding: 40px 20px;
             text-align: center;
+        }
+
+        header h1 {
+            color: #cc0000; /* Vermelho Poppy */
+            margin: 0;
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+        }
+
+        header p {
+            color: #aaa;
+            font-style: italic;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
             padding: 20px;
-        }
-
-        .hero h2 { font-size: 3rem; margin-bottom: 10px; }
-
-        /* Grade de Conteúdo */
-        .main-container {
-            max-width: 1200px;
-            margin: -50px auto 40px;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 30px;
-        }
-
-        /* Cards Estilizados */
-        .card {
-            background: var(--white);
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            margin-bottom: 25px;
-        }
-
-        .match-highlight {
-            background: var(--dark-bg);
-            color: white;
-            text-align: center;
-        }
-
-        .score-board {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            margin: 20px 0;
-            font-size: 1.8rem;
-            font-weight: bold;
-        }
-
-        .btn-ticket {
-            background: var(--secondary-color);
-            color: #000;
-            padding: 10px 25px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: transform 0.2s;
-            display: inline-block;
-        }
-
-        .btn-ticket:hover { transform: scale(1.05); }
-
-        /* Lista de Notícias */
-        .news-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .news-item img {
-            width: 100%;
+            background: rgba(255, 255, 255, 0.02);
             border-radius: 8px;
-            margin-bottom: 10px;
         }
 
-        /* Tabela Pro */
+        /* Seções de Conteúdo */
+        section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border-left: 3px solid #0056b3; /* Azul Huggy */
+        }
+
+        h2 {
+            color: #0056b3;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+
+        .highlight {
+            color: #d4af37;
+            font-weight: bold;
+        }
+
+        /* Tabela de Lançamentos */
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 15px;
+            margin: 20px 0;
+            background: #1a1a1a;
         }
 
-        th { text-align: left; color: #888; font-size: 0.8rem; padding-bottom: 10px; }
-        td { padding: 12px 0; border-bottom: 1px solid #eee; font-weight: 500; }
-        .pos { color: var(--primary-color); font-weight: bold; width: 30px; }
+        table, th, td {
+            border: 1px solid #444;
+        }
 
-        /* Responsividade */
-        @media (max-width: 900px) {
-            .main-container { grid-template-columns: 1fr; margin-top: 20px; }
-            .hero h2 { font-size: 2rem; }
-            .news-grid { grid-template-columns: 1fr; }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #0056b3;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8rem;
+            color: #666;
+            border-top: 1px solid #333;
+        }
+
+        .warning {
+            background-color: #330000;
+            color: #ff4444;
+            padding: 15px;
+            border: 1px dashed #ff4444;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">FUT<span>MASTER</span></div>
-        <nav>
-            <ul>
-                <li><a href="#">Jogos</a></li>
-                <li><a href="#">Notícias</a></li>
-                <li><a href="#">Elenco</a></li>
-                <li><a href="#">Sócio Torcedor</a></li>
-            </ul>
-        </nav>
+        <h1>PLAYTIME CO.</h1>
+        <p>"Você ainda está aqui? A fábrica fechou há 10 anos..."</p>
     </header>
 
-    <section class="hero">
-        <h2>Rumo ao Título!</h2>
-        <p>Acompanhe cada detalhe da nossa jornada nesta temporada.</p>
-    </section>
-
-    <div class="main-container">
+    <div class="container">
         
-        <main>
-            <section class="card match-highlight">
-                <p style="color: var(--secondary-color); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px;">Próxima Partida</p>
-                <div class="score-board">
-                    <span>MEU TIME</span>
-                    <span style="color: var(--secondary-color);">X</span>
-                    <span>ADVERSÁRIO</span>
-                </div>
-                <p>Quarta-feira | 21:30 | Arena Principal</p>
-                <br>
-                <a href="#" class="btn-ticket">Garantir Ingresso</a>
-            </section>
+        <section id="origem">
+            <h2>A Era de Ouro (1930 - 1990)</h2>
+            <p>Fundada por <span class="highlight">Elliot Ludwig</span>, a Playtime Co. começou como uma pequena fábrica de brinquedos com uma missão simples: criar sorrisos. Com o passar das décadas, tornou-se uma gigante da indústria, famosa por brinquedos revolucionários como a boneca <strong>Poppy</strong>, a primeira boneca inteligente do mundo.</p>
+        </section>
 
-            <section class="card">
-                <h3 style="margin-bottom: 20px; border-left: 5px solid var(--primary-color); padding-left: 10px;">Últimas do Clube</h3>
-                <div class="news-grid">
-                    <article class="news-item">
-                        <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&q=80&w=500" alt="Treino">
-                        <h4>Preparação intensa para o clássico</h4>
-                        <p>O técnico comandou um treino tático focado na saída de bola...</p>
-                    </article>
-                    <article class="news-item">
-                        <img src="https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&q=80&w=500" alt="Torcida">
-                        <h4>Sócio-torcedor bate recorde</h4>
-                        <p>Alcançamos a marca de 50 mil membros ativos nesta manhã!</p>
-                    </article>
-                </div>
-            </section>
-        </main>
+        <section id="capitulos">
+            <h2>Cronologia dos Incidentes</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Capítulo</th>
+                        <th>Título</th>
+                        <th>Ameaça Principal</th>
+                        <th>Ano de Lançamento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>A Tight Squeeze</td>
+                        <td>Huggy Wuggy</td>
+                        <td>2021</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Fly in a Web</td>
+                        <td>Mommy Long Legs</td>
+                        <td>2022</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Deep Sleep</td>
+                        <td>CatNap / O Protótipo</td>
+                        <td>2024</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
 
-        <aside>
-            <section class="card">
+        <section id="mistério">
+            <h2>A Hora da Alegria</h2>
+            <p>Em 1995, todos os funcionários da Playtime Co. desapareceram misteriosamente em um único dia. O evento, conhecido internamente como <span class="highlight">"A Hora da Alegria"</span>, transformou o local em um túmulo industrial. Recentemente, um ex-funcionário recebeu um pacote contendo uma fita VHS e uma flor de papoula, convidando-o a retornar.</p>
+            
+            <div class="warning">
+                <strong>AVISO DE SEGURANÇA:</strong> Não entre nas instalações após o anoitecer. O Protótipo (Experimento 1006) continua ativo.
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        &copy; 2026 Arquivos Não Oficiais da Playtime Co. | Inspirado no universo da MOB Games.
+    </footer>
+
+</body>
+</html>
