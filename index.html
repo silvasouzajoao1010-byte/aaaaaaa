@@ -3,166 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Playtime Co. Archive | A História</title>
+    <title>Playtime Co. - Arquivos Confidenciais</title>
     <style>
-        /* Estilização Geral */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0f0f0f;
+            background-color: #1a1a1a;
             color: #e0e0e0;
             margin: 0;
             padding: 0;
-            line-height: 1.6;
         }
 
         header {
-            background-color: #1a1a1a;
-            border-bottom: 4px solid #d4af37; /* Dourado industrial */
+            background-color: #000;
             padding: 40px 20px;
             text-align: center;
+            border-bottom: 5px solid #d32f2f;
         }
 
         header h1 {
-            color: #cc0000; /* Vermelho Poppy */
-            margin: 0;
-            font-size: 3rem;
+            color: #d32f2f;
             text-transform: uppercase;
             letter-spacing: 5px;
-        }
-
-        header p {
-            color: #aaa;
-            font-style: italic;
+            margin: 0;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 20px auto;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 8px;
         }
 
-        /* Seções de Conteúdo */
-        section {
+        .character-card {
+            background-color: #262626;
+            border-radius: 10px;
             margin-bottom: 40px;
-            padding: 20px;
-            border-left: 3px solid #0056b3; /* Azul Huggy */
+            overflow: hidden;
+            display: flex;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-left: 5px solid #3d5afe;
         }
 
-        h2 {
-            color: #0056b3;
-            border-bottom: 1px solid #333;
-            padding-bottom: 10px;
+        .character-card:nth-child(even) {
+            flex-direction: row-reverse;
+            border-left: none;
+            border-right: 5px solid #d32f2f;
         }
 
-        .highlight {
-            color: #d4af37;
+        .character-img {
+            width: 350px;
+            height: 350px;
+            background-color: #333;
+            object-fit: cover;
+        }
+
+        .character-info {
+            padding: 30px;
+            flex: 1;
+        }
+
+        .character-info h2 {
+            margin-top: 0;
+            color: #ffeb3b;
+            text-transform: uppercase;
+        }
+
+        .status-tag {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
             font-weight: bold;
-        }
-
-        /* Tabela de Lançamentos */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            background: #1a1a1a;
-        }
-
-        table, th, td {
-            border: 1px solid #444;
-        }
-
-        th, td {
-            padding: 12px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #0056b3;
+            margin-bottom: 15px;
+            background-color: #d32f2f;
             color: white;
         }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 20px;
-            font-size: 0.8rem;
-            color: #666;
-            border-top: 1px solid #333;
+        p {
+            line-height: 1.6;
+            color: #ccc;
         }
 
-        .warning {
-            background-color: #330000;
-            color: #ff4444;
-            padding: 15px;
-            border: 1px dashed #ff4444;
-            margin-top: 20px;
+        footer {
+            text-align: center;
+            padding: 30px;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        /* Responsividade para celulares */
+        @media (max-width: 768px) {
+            .character-card, .character-card:nth-child(even) {
+                flex-direction: column;
+            }
+            .character-img {
+                width: 100%;
+                height: 250px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>PLAYTIME CO.</h1>
-        <p>"Você ainda está aqui? A fábrica fechou há 10 anos..."</p>
-    </header>
+<header>
+    <h1>Poppy Playtime: Database</h1>
+    <p>Registros de Experimentos da Playtime Co.</p>
+</header>
 
-    <div class="container">
-        
-        <section id="origem">
-            <h2>A Era de Ouro (1930 - 1990)</h2>
-            <p>Fundada por <span class="highlight">Elliot Ludwig</span>, a Playtime Co. começou como uma pequena fábrica de brinquedos com uma missão simples: criar sorrisos. Com o passar das décadas, tornou-se uma gigante da indústria, famosa por brinquedos revolucionários como a boneca <strong>Poppy</strong>, a primeira boneca inteligente do mundo.</p>
-        </section>
+<div class="container">
 
-        <section id="capitulos">
-            <h2>Cronologia dos Incidentes</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Capítulo</th>
-                        <th>Título</th>
-                        <th>Ameaça Principal</th>
-                        <th>Ano de Lançamento</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>A Tight Squeeze</td>
-                        <td>Huggy Wuggy</td>
-                        <td>2021</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Fly in a Web</td>
-                        <td>Mommy Long Legs</td>
-                        <td>2022</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Deep Sleep</td>
-                        <td>CatNap / O Protótipo</td>
-                        <td>2024</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+    <section class="character-card">
+        <img src="https://via.placeholder.com/350x350?text=Poppy+Playtime" alt="Poppy" class="character-img">
+        <div class="character-info">
+            <span class="status-tag">Status: Ativa</span>
+            <h2>Poppy Playtime</h2>
+            <p><strong>História:</strong> Criada em 1950 por Elliot Ludwig, Poppy é a boneca mais inteligente já produzida. Diferente de outros brinquedos, ela possui uma consciência refinada e a capacidade de conversar de forma humana. Ela é a chave para entender o que aconteceu na fábrica, embora suas verdadeiras intenções permaneçam envoltas em mistério.</p>
+        </div>
+    </section>
 
-        <section id="mistério">
-            <h2>A Hora da Alegria</h2>
-            <p>Em 1995, todos os funcionários da Playtime Co. desapareceram misteriosamente em um único dia. O evento, conhecido internamente como <span class="highlight">"A Hora da Alegria"</span>, transformou o local em um túmulo industrial. Recentemente, um ex-funcionário recebeu um pacote contendo uma fita VHS e uma flor de papoula, convidando-o a retornar.</p>
-            
-            <div class="warning">
-                <strong>AVISO DE SEGURANÇA:</strong> Não entre nas instalações após o anoitecer. O Protótipo (Experimento 1006) continua ativo.
-            </div>
-        </section>
-
-    </div>
-
-    <footer>
-        &copy; 2026 Arquivos Não Oficiais da Playtime Co. | Inspirado no universo da MOB Games.
-    </footer>
-
-</body>
-</html>
+    <section class="character-card">
+        <img src="https://via.placeholder.com/350x350?text=Huggy+Wuggy" alt="Huggy Wuggy" class="character-img">
+        <div class="character-info">
+            <span class="status-tag">Experimento 1170</span>
+            <h2>Huggy Wuggy</h2>
+            <p><strong>História:</strong> O rosto da Playtime Co. e o favorito das crianças. Por
