@@ -1,0 +1,26 @@
+# Base44 sandbox environment for this project.
+#
+# The repository is a single self-contained static page (index.html): no build
+# step, no package manager, no backend, no runtime configuration. An nginx
+# service therefore serves the checked-out files straight off the bind mount, so
+# the preview always shows the cloned source and an edit to index.html is live on
+# the next page refresh (call reload_preview after editing — there is no HMR).
+services:
+  web:
+    image: nginx:alpine
+    ports:
+      - "3000:80"
+    volumes:
+      # Read-only mount of the repo root as the document root.
+      - ./:/usr/share/nginx/html:ro
+      # Sandbox-only override: the checkout's root directory is mode 700, which
+      # nginx's default unprivileged worker user cannot traverse (every request
+      # would 403). This config runs the workers as root instead; see the file.
+      - ./.base44/nginx.conf:/etc/nginx/nginx.conf:ro
+    restart: on-failure
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://localhost/"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
