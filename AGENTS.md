@@ -7,7 +7,13 @@ No `package.json`, no build step, no bundler, no backend, no tests.
 Non-obvious details worth knowing before editing:
 - The two character images are **inline base64 data URIs** — there are no asset
   files to add and no image requests to debug.
-- There is **no JavaScript** in the page; all styling is inline in a `<style>` block.
+- All CSS is inline in a `<style>` block. The page is a multi-game catalog: a
+  `<nav class="tabs">` of `.tab` buttons switches between `<section class="panel">`
+  blocks (`#poppy`, `#nfs`, `#sonic`) via the small inline `<script>` at the end —
+  the active tab/panel is marked with the `active` class. Adding a game means one
+  tab button plus one panel with the same `id`.
+- Games without a real image use `<div class="character-img placeholder">` with an
+  emoji instead of a base64 `<img>`.
 - No external URLs at all (no CDNs, fonts or APIs), so it works fully offline and
   needs **no environment variables, no secrets and no database**.
 
@@ -26,7 +32,7 @@ untouched and a normal deployment would use the image's stock config.
 
 ## Verifying it works
 ```bash
-curl -s http://localhost:3000/ | grep -q "Poppy Playtime" && echo OK
+curl -s http://localhost:3000/ | grep -q "Central dos Games" && echo OK
 docker compose -f docker-compose.base44.yml ps   # web should be healthy
 ```
 

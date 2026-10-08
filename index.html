@@ -3,91 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Playtime Co. - Arquivos Confidenciais</title>
+    <title>Central dos Games - Fichas e Histórias</title>
     <style>
+        :root {
+            --bg: #f4f5f7;
+            --surface: #ffffff;
+            --line: #e4e7ec;
+            --text: #22262b;
+            --muted: #6b7280;
+            --accent: #3b5bdb;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #1a1a1a;
-            color: #e0e0e0;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
             margin: 0;
             padding: 0;
         }
 
         header {
-            background-color: #000;
-            padding: 40px 20px;
+            background-color: var(--surface);
+            padding: 36px 20px 24px;
             text-align: center;
-            border-bottom: 5px solid #d32f2f;
+            border-bottom: 1px solid var(--line);
         }
 
         header h1 {
-            color: #d32f2f;
+            color: var(--text);
             text-transform: uppercase;
-            letter-spacing: 5px;
-            margin: 0;
+            letter-spacing: 3px;
+            font-size: 1.7rem;
+            margin: 0 0 8px;
+        }
+
+        header p {
+            color: var(--muted);
+            margin: 0 0 24px;
+        }
+
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .tab {
+            font: inherit;
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 10px 22px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background-color: var(--surface);
+            color: #3a4048;
+            cursor: pointer;
+            transition: background-color .15s ease, border-color .15s ease, color .15s ease;
+        }
+
+        .tab:hover {
+            border-color: #b6bcc6;
+        }
+
+        .tab.active {
+            background-color: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
         }
 
         .container {
             max-width: 1000px;
-            margin: 20px auto;
-            padding: 20px;
+            margin: 28px auto;
+            padding: 0 20px;
+        }
+
+        /* Cada aba de jogo é um painel; só o ativo aparece */
+        .panel {
+            display: none;
+        }
+
+        .panel.active {
+            display: block;
         }
 
         .character-card {
-            background-color: #262626;
-            border-radius: 10px;
-            margin-bottom: 40px;
+            background-color: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            margin-bottom: 24px;
             overflow: hidden;
             display: flex;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border-left: 5px solid #3d5afe;
+            box-shadow: 0 2px 10px rgba(20, 25, 35, .06);
         }
 
         .character-card:nth-child(even) {
             flex-direction: row-reverse;
-            border-left: none;
-            border-right: 5px solid #d32f2f;
         }
 
         .character-img {
-            width: 350px;
-            height: 350px;
-            background-color: #333;
+            width: 320px;
+            height: 320px;
+            background-color: #eef1f5;
             object-fit: cover;
         }
 
+        /* Bloco de arte para os jogos que ainda não têm imagem */
+        .character-img.placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 20px;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #5b6270;
+        }
+
+        .character-img.placeholder span {
+            font-size: 3rem;
+            line-height: 1;
+        }
+
         .character-info {
-            padding: 30px;
+            padding: 28px;
             flex: 1;
+            min-width: 0;
         }
 
         .character-info h2 {
-            margin-top: 0;
-            color: #ffeb3b;
-            text-transform: uppercase;
+            margin: 0 0 12px;
+            color: var(--text);
+            letter-spacing: .5px;
         }
 
         .status-tag {
             display: inline-block;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8em;
-            font-weight: bold;
-            margin-bottom: 15px;
-            background-color: #d32f2f;
-            color: white;
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 0.72em;
+            font-weight: 700;
+            letter-spacing: .6px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+            background-color: #eef1f5;
+            color: #465063;
         }
 
         p {
-            line-height: 1.6;
-            color: #ccc;
+            line-height: 1.65;
+            color: #4a5260;
+            margin: 0;
         }
 
         footer {
             text-align: center;
-            padding: 30px;
+            padding: 28px;
             font-size: 0.9em;
-            color: #666;
+            color: #8b929c;
         }
 
         /* Responsividade para celulares */
@@ -97,7 +174,7 @@
             }
             .character-img {
                 width: 100%;
-                height: 250px;
+                height: 220px;
             }
         }
     </style>
@@ -105,11 +182,18 @@
 <body>
 
 <header>
-    <h1>Poppy Playtime: Database</h1>
-    <p>Registros de Experimentos da Playtime Co.</p>
+    <h1>Central dos Games</h1>
+    <p>Fichas, histórias e curiosidades dos seus jogos favoritos</p>
+    <nav class="tabs">
+        <button class="tab active" data-tab="poppy">Poppy Playtime</button>
+        <button class="tab" data-tab="nfs">Need for Speed</button>
+        <button class="tab" data-tab="sonic">Sonic</button>
+    </nav>
 </header>
 
-<div class="container">
+<main class="container">
+
+    <section class="panel active" id="poppy">
 
     <section class="character-card">
         <img src="data:image/jpeg;base64,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" alt="Poppy" class="character-img">
@@ -125,4 +209,70 @@
         <div class="character-info">
             <span class="status-tag">Experimento 1170</span>
             <h2>Huggy Wuggy</h2>
-            <p><strong>História:</strong> O rosto da Playtime Co. e o favorito das crianças. Por ser altamente bonito e chamativo na visão das crianças, na visão dos cientistas huggy wuggy era altamente obediente e inteligente com uma força bruta enorme, huggy wuggy foi treinado para ser obediente, os cientistas da fabrica faziaam lavagem cerebral em seus experimentos e com huggy wuggy não foi diferente 
+            <p><strong>História:</strong> O rosto da Playtime Co. e o favorito das crianças. Por ser altamente bonito e chamativo na visão das crianças, na visão dos cientistas huggy wuggy era altamente obediente e inteligente com uma força bruta enorme, huggy wuggy foi treinado para ser obediente, os cientistas da fabrica faziaam lavagem cerebral em seus experimentos e com huggy wuggy não foi diferente</p>
+        </div>
+    </section>
+
+    </section>
+
+    <section class="panel" id="nfs">
+        <section class="character-card">
+            <div class="character-img placeholder"><span>🏎️</span>Need for Speed</div>
+            <div class="character-info">
+                <span class="status-tag">Franquia de corrida</span>
+                <h2>Need for Speed</h2>
+                <p><strong>História:</strong> Criada pela Electronic Arts em 1994, a série nasceu como um jogo de corrida focado em carros esportivos e perseguições policiais. Ao longo das décadas a franquia mudou bastante de estilo, passando por corridas noturnas de rua, drift e duelos em alta velocidade.</p>
+            </div>
+        </section>
+
+        <section class="character-card">
+            <div class="character-img placeholder"><span>🚓</span>Most Wanted</div>
+            <div class="character-info">
+                <span class="status-tag">O mais famoso</span>
+                <h2>Most Wanted</h2>
+                <p><strong>História:</strong> Lançado em 2005, é considerado por muitos o auge da série. O jogador precisa subir na lista de adversários mais procurados enquanto foge da polícia pelas ruas de Rockport, com muita personalização de carros pelo caminho.</p>
+            </div>
+        </section>
+    </section>
+
+    <section class="panel" id="sonic">
+        <section class="character-card">
+            <div class="character-img placeholder"><span>💫</span>Sonic the Hedgehog</div>
+            <div class="character-info">
+                <span class="status-tag">Franquia de plataforma</span>
+                <h2>Sonic the Hedgehog</h2>
+                <p><strong>História:</strong> Criado pela Sega em 1991 como resposta ao sucesso de Mario, Sonic apostou em velocidade e nos anéis dourados como marca registrada. O ouriço azul virou mascote da empresa e um dos personagens mais reconhecidos dos videogames.</p>
+            </div>
+        </section>
+
+        <section class="character-card">
+            <div class="character-img placeholder"><span>💠</span>Sonic Mania</div>
+            <div class="character-info">
+                <span class="status-tag">Clássico moderno</span>
+                <h2>Sonic Mania</h2>
+                <p><strong>História:</strong> Lançado em 2017 e feito por fãs junto com a Sega, resgata o estilo em pixels dos jogos de Mega Drive, com fases inéditas e remixes de clássicos como a Green Hill Zone.</p>
+            </div>
+        </section>
+    </section>
+
+</main>
+
+<footer>Central dos Games — fichas feitas por fãs.</footer>
+
+<script>
+    document.querySelectorAll('.tab').forEach(function (tab) {
+        tab.addEventListener('click', function () {
+            document.querySelectorAll('.tab').forEach(function (t) {
+                t.classList.remove('active');
+            });
+            document.querySelectorAll('.panel').forEach(function (p) {
+                p.classList.remove('active');
+            });
+            tab.classList.add('active');
+            document.getElementById(tab.dataset.tab).classList.add('active');
+        });
+    });
+</script>
+
+</body>
+</html>
